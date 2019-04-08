@@ -1,0 +1,166 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Annotapropp",
+      "description": "microservice d'annotation de textes",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Corpus",
+        "description": "API pour le  Corpus "
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api": {
+        "post": {
+          "tags": [
+            "Corpus"
+          ],
+          "description": "cree un nouveau corpus",
+          "parameters": [
+            {
+              "name": "nomCorpus",
+              "in": "body",
+              "description": "le nom du corpus qu'on souhaite créer",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Nouveau corpus crée",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Corpus"
+          ],
+          "summary": "retourne tous les corpus de la base de donnée",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          }
+        }
+      },
+      "/api/{annota_id}": {
+        "parameters": [
+          {
+            "name": "nomCorpus",
+            "in": "body",
+            "required": true,
+            "description": "id du corpus qu'on souhaite trouver",
+            "type": "array"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Corpus"
+          ],
+          "summary": "retourne le corpus avec l'id specifié",
+          "responses": {
+            "200": {
+              "description": "corpus trouvé",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Supprime un corpus avec l'id specifié",
+          "tags": [
+            "Corpus"
+          ],
+          "responses": {
+            "200": {
+              "description": "Corpus supprimé",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "modifie le corpus avec l'id specifié",
+          "tags": [
+            "Corpus"
+          ],
+          "parameters": [
+            {
+              "name": "NomCorpus",
+              "in": "body",
+              "description": "nomCorpus avec une nouvelle valeur",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Corpus modifié",
+              "schema": {
+                "$ref": "#/definitions/Corpus"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "required": [
+          "email",
+          "_id"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "email": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+      }
+    }
+  }
+  
